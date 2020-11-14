@@ -34,13 +34,22 @@ public class UserServiceImpl implements UserService {
     @Override
     //用户登录验证
     public int checkLogin(String username, String pwd) {
+        System.out.println(username);
+        System.out.println(pwd);
         String pwd2 = userMapper1.selectPwdByusername(username);//根据用户名查询数据库中对应密码;
-        if(pwd2.equals(pwd)) {
-            return 1;
+        if(pwd2!=null) {//避免空指针异常;
+            if(pwd2.equals(pwd)) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
         }
         else {
             return 0;
         }
+
+
     }
 
 }
