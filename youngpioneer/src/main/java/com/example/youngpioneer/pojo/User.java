@@ -13,6 +13,16 @@ public class User {
 
     private String parentname;
 
+    private int groupid;
+
+    public int getGroupid() {
+        return groupid;
+    }
+
+    public void setGroupid() {
+        this.groupid = 1;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -60,4 +70,6 @@ public class User {
     public void setParentname(String parentname) {
         this.parentname = parentname == null ? null : parentname.trim();
     }
+
+
 }

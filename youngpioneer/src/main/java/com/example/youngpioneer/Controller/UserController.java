@@ -28,7 +28,7 @@ public class UserController {
 
     @RequestMapping("/register")//注册,判断用户名是否重复;
     @CrossOrigin
-    public int addUser(String username,String nickname,String phone,String pwd,String school,String parentname) {
+    public int addUser(String username,String nickname,String phone,String pwd,String school,String parentname,Integer groupid) {
         System.out.println(username);
         String usernameMD5 = MD5Tools.string2MD5(username);//用户名转换成MD5形式;
         String pwdMD5 = MD5Tools.string2MD5(pwd);//用户名转换成MD5形式;
@@ -39,6 +39,7 @@ public class UserController {
         user.setPwd(pwdMD5);
         user.setSchool(school);
         user.setParentname(parentname);//封装对象;
+        user.setGroupid();//默认设置为1，普通用户
         List<String> list = userService.getAllPrimaryKey();//获取所有用户名
         System.out.println(list);
         if(list.contains(username)) {
