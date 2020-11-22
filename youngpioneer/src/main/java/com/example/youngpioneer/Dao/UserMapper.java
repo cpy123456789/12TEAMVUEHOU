@@ -1,5 +1,6 @@
 package com.example.youngpioneer.Dao;
 
+import com.example.youngpioneer.pojo.Role;
 import com.example.youngpioneer.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -25,5 +26,9 @@ public interface UserMapper {
     List<String> selectAllusername();
 
     String selectPwdByusername(String username);
+    //根据用户ID查询对应的角色
+    List<Role> selectRoles(String id);
+
+    String selectuidByusername(String username);
 
 }

@@ -2,6 +2,7 @@ package com.example.youngpioneer.Controller;
 
 import com.example.youngpioneer.Service.UserService;
 import com.example.youngpioneer.Service.impl.UserServiceImpl;
+import com.example.youngpioneer.pojo.Role;
 import com.example.youngpioneer.pojo.User;
 import com.example.youngpioneer.utils.JwtUtil;
 import com.example.youngpioneer.utils.MD5Tools;
@@ -29,24 +30,24 @@ public class UserController {
 
     @RequestMapping("/register")//注册,判断用户名是否重复;
     @CrossOrigin
-    public int addUser(String username,String nickname,String phone,String pwd,String school,String parentname,Integer groupid) {
-        System.out.println(username);
-        String usernameMD5 = MD5Tools.string2MD5(username);//用户名转换成MD5形式;
-        String pwdMD5 = MD5Tools.string2MD5(pwd);//用户名转换成MD5形式;
-        User user = new User();
+    public int addUser(User user) {
+        System.out.println(user);
+        String usernameMD5 = MD5Tools.string2MD5(user.getUsername());//用户名转换成MD5形式;
+        String pwdMD5 = MD5Tools.string2MD5(user.getPwd());//用户名转换成MD5形式;
+        //User user = new User();
         UUID id = UUID.randomUUID();
         System.out.println(id);
         String id2 = id.toString().replace("-","");
         user.setId(id2);
-        user.setUsername(usernameMD5);
-        user.setNickname(nickname);
-        user.setPhone(phone);
-        user.setPwd(pwdMD5);
-        user.setSchool(school);
-        user.setParentname(parentname);//封装对象;
+//        user.setUsername(usernameMD5);
+//        user.setNickname(nickname);
+//        user.setPhone(phone);
+//        user.setPwd(pwdMD5);
+//        user.setSchool(school);
+//        user.setParentname(parentname);//封装对象;
         List<String> list = userService.getAllusername();//获取所有用户名
         System.out.println(list);
-        if(list.contains(username)) {
+        if(list.contains(user.getUsername())) {
             return 0;
         }//判断用户名是否已经存在;
         else {
@@ -61,15 +62,13 @@ public class UserController {
     public int Login(String username, String pwd) {
         String usernameMD5 = MD5Tools.string2MD5(username);//用户名转换成MD5形式;
         String pwdMD5 = MD5Tools.string2MD5(pwd);//用户名转换成MD5形式;
-//        if(username != null){
-//            String jwt = JwtUtil.generateToken(username);
-//            jwt = URLEncoder.encode(jwt);
-//            Cookie cookie_token = new Cookie(TOKEN, jwt);
-//            cookie_token.setMaxAge(60*60*60);
-//            cookie_token.setPath("/");
-//            response.addCookie(cookie_token);
-//        }
+
         int result = userService.checkLogin(usernameMD5,pwdMD5);
+        //返回该用户的状态码
+        if (result>0){
+            //
+
+        }
         System.out.println("登录验证结果"+result);
         return result;
 

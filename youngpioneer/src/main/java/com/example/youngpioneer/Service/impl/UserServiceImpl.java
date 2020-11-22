@@ -1,8 +1,11 @@
 package com.example.youngpioneer.Service.impl;
 
 import com.example.youngpioneer.Dao.UserMapper;
+import com.example.youngpioneer.Dao.UserroleMapper;
 import com.example.youngpioneer.Service.UserService;
+import com.example.youngpioneer.pojo.Role;
 import com.example.youngpioneer.pojo.User;
+import com.example.youngpioneer.pojo.Userrole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper1=null;
 
 
+    @Autowired
+    private UserroleMapper userroleMapper;
     @Override
     //添加用户
     public int addUser(User record) {
@@ -48,6 +53,21 @@ public class UserServiceImpl implements UserService {
         else {
             return 0;
         }
+
+
+    }
+
+    //
+    @Override
+    public List<Userrole> selectRoles(String username) {
+
+        String id = userMapper1.selectuidByusername(username);
+        //List<Role> roleList = userMapper1.selectRoles(id);
+
+        List<Userrole> list = userroleMapper.selectByUid(id);
+
+        
+        return list;
 
 
     }

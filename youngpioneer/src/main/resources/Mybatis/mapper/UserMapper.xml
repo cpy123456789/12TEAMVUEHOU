@@ -116,10 +116,15 @@
   </update>
 
 <!-- 手动添加   -->
+    <select id="selectuidByusername" resultType="java.lang.String">
+    select id from user where username=#{username}
+  </select>
     <select id="selectAllusername" resultType="java.lang.String">
     select username from user
   </select>
+
     <select id="selectPwdByusername" resultType="java.lang.String"  parameterType ="java.lang.String">
     select pwd from user where username=#{username}
   </select>
+
 </mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.youngpioneer.Dao.MenuMapper">
+    <resultMap id="BaseResultMap" type="com.example.youngpioneer.pojo.Menu">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="menuname" jdbcType="VARCHAR" property="menuname" />
+        <result column="resolve1" jdbcType="VARCHAR" property="resolve1" />
+        <result column="resulve2" jdbcType="VARCHAR" property="resulve2" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, menuname, resolve1, resulve2
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from menu
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.example.youngpioneer.pojo.Menu">
+    insert into menu (id, menuname, resolve1,
+      resulve2)
+    values (#{id,jdbcType=INTEGER}, #{menuname,jdbcType=VARCHAR}, #{resolve1,jdbcType=VARCHAR},
+      #{resulve2,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.example.youngpioneer.pojo.Menu">
+        insert into menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="menuname != null">
+                menuname,
+            </if>
+            <if test="resolve1 != null">
+                resolve1,
+            </if>
+            <if test="resulve2 != null">
+                resulve2,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="menuname != null">
+                #{menuname,jdbcType=VARCHAR},
+            </if>
+            <if test="resolve1 != null">
+                #{resolve1,jdbcType=VARCHAR},
+            </if>
+            <if test="resulve2 != null">
+                #{resulve2,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.youngpioneer.pojo.Menu">
+        update menu
+        <set>
+            <if test="menuname != null">
+                menuname = #{menuname,jdbcType=VARCHAR},
+            </if>
+            <if test="resolve1 != null">
+                resolve1 = #{resolve1,jdbcType=VARCHAR},
+            </if>
+            <if test="resulve2 != null">
+                resulve2 = #{resulve2,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.youngpioneer.pojo.Menu">
+    update menu
+    set menuname = #{menuname,jdbcType=VARCHAR},
+      resolve1 = #{resolve1,jdbcType=VARCHAR},
+      resulve2 = #{resulve2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
