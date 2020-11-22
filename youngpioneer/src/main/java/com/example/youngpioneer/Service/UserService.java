@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
 
     public int addUser(User user);
-    public List<String> getAllPrimaryKey();
+    public List<String> getAllusername();
 
     //用户登录验证
     public int checkLogin(String username,String pwd);

@@ -22,7 +22,7 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
     //手动添加
-    List<String> selectAllPrimaryKey();
+    List<String> selectAllusername();
 
     String selectPwdByusername(String username);
 

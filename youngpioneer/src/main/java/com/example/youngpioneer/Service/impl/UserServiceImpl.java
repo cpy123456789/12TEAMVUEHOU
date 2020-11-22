@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     //获取数据库所有用户名
-    public List<String> getAllPrimaryKey() {
-        List<String> list = userMapper1.selectAllPrimaryKey();
+    public List<String> getAllusername() {
+        List<String> list = userMapper1.selectAllusername();
         return list;
     }
 

@@ -1,6 +1,8 @@
 package com.example.youngpioneer.pojo;
 
 public class User {
+    private String id;
+
     private String username;
 
     private String nickname;
@@ -13,14 +15,12 @@ public class User {
 
     private String parentname;
 
-    private int groupid;
-
-    public int getGroupid() {
-        return groupid;
+    public String getId() {
+        return id;
     }
 
-    public void setGroupid() {
-        this.groupid = 1;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     public String getUsername() {
@@ -70,6 +70,4 @@ public class User {
     public void setParentname(String parentname) {
         this.parentname = parentname == null ? null : parentname.trim();
     }
-
-
 }

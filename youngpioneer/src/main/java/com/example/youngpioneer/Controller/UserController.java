@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/user")
@@ -33,14 +34,17 @@ public class UserController {
         String usernameMD5 = MD5Tools.string2MD5(username);//用户名转换成MD5形式;
         String pwdMD5 = MD5Tools.string2MD5(pwd);//用户名转换成MD5形式;
         User user = new User();
+        UUID id = UUID.randomUUID();
+        System.out.println(id);
+        String id2 = id.toString().replace("-","");
+        user.setId(id2);
         user.setUsername(usernameMD5);
         user.setNickname(nickname);
         user.setPhone(phone);
         user.setPwd(pwdMD5);
         user.setSchool(school);
         user.setParentname(parentname);//封装对象;
-        user.setGroupid();//默认设置为1，普通用户
-        List<String> list = userService.getAllPrimaryKey();//获取所有用户名
+        List<String> list = userService.getAllusername();//获取所有用户名
         System.out.println(list);
         if(list.contains(username)) {
             return 0;
